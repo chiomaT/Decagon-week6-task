@@ -44,20 +44,6 @@ describe("post request", () => {
             });
         }));
     });
-    describe("Post request with all parameters not complete", () => {
-        it("returns status code 400 if a parameter is missing", () => __awaiter(void 0, void 0, void 0, function* () {
-            const res = yield (0, supertest_1.default)(app_1.default)
-                .post("/companies")
-                .send({
-                organization: "hello",
-                marketValue: "90%",
-                address: "hello",
-                noOfEmployees: 2,
-                employees: ["james bond", "jackie chan"],
-            });
-            expect(res.statusCode).toEqual(400);
-        }));
-    });
 });
 describe("getAll request", () => {
     describe("given the product exist", () => {
@@ -85,7 +71,7 @@ describe("getAll request", () => {
 describe("getById request", () => {
     describe("given the product exist", () => {
         it("returns status code 200 if the product does exist", () => __awaiter(void 0, void 0, void 0, function* () {
-            const id = 1;
+            const id = 2;
             const res = yield (0, supertest_1.default)(app_1.default).get(`/companies/${id}`);
             expect(res.statusCode).toEqual(200);
             expect(res.body).toEqual({
@@ -123,7 +109,7 @@ describe("update request", () => {
     });
     describe("updated successfully", () => {
         it("returns status code 200 if the product is updated successfully", () => __awaiter(void 0, void 0, void 0, function* () {
-            const id = 1;
+            const id = 2;
             let res = yield (0, supertest_1.default)(app_1.default).put(`/companies/${id}`).send({
                 organization: "hello",
             });
@@ -154,7 +140,7 @@ describe("delete request", () => {
     });
     describe("deleted successfully", () => {
         it("returns status code 200 if the product is deleted successfully", () => __awaiter(void 0, void 0, void 0, function* () {
-            const id = 1;
+            const id = 2;
             const res = yield (0, supertest_1.default)(app_1.default).delete(`/companies/${id}`);
             expect(res.statusCode).toEqual(200);
         }));

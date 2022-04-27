@@ -27,10 +27,10 @@ export const getAllCompanies = async () => {
 //GET A PARTICULAR COMPANY BY ID
 export const getCompanyById = async (id: number) => {
   let companies: any = await getAllCompanies();
-  return new Promise((resolve, reject) => {
-    const company = companies.find((c: { id: number }) => c.id === id);
-    resolve(company);
-  });
+  // return new Promise((resolve, reject) => {
+  const company = companies.find((c: { id: number }) => c.id === id);
+  return company;
+  // });
 };
 
 //CREATE COMPANY

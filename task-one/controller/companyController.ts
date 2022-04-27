@@ -33,18 +33,28 @@ export const findById = async (req: Request, res: Response) => {
 //CREATE COMPANY
 export const create = async (req: Request, res: Response) => {
   try {
+    const {
+      organization,
+      products,
+      marketValue,
+      address,
+      ceo,
+      country,
+      noOfEmployees,
+      employees,
+    } = req.body;
     const company: any = {
-      organization: req.body.organization,
-      products: req.body.products,
-      marketValue: req.body.marketValue,
-      address: req.body.address,
-      ceo: req.body.ceo,
-      country: req.body.country,
-      noOfEmployees: req.body.noOfEmployees,
-      employees: req.body.employees,
+      organization,
+      products,
+      marketValue,
+      address,
+      ceo,
+      country,
+      noOfEmployees,
+      employees,
     };
     const companies = await createCompany(company);
-    res.status(200).json(companies);
+    res.status(201).json(companies);
   } catch (error) {
     console.error(error);
   }
@@ -57,6 +67,7 @@ export const update = async (req: Request, res: Response) => {
     if (!company) {
       res.status(404).json("company does not exist");
     } else {
+      // const { organization,products,marketValue,address,ceo,country,noOfEmployees,employees } = req.body
       const update: any = {
         organization: req.body.organization || company.organization,
         createdAt: company.createdAt,
@@ -68,6 +79,9 @@ export const update = async (req: Request, res: Response) => {
         noOfEmployees: req.body.noOfEmployees || company.noOfEmployees,
         employees: req.body.employees || company.employees,
       };
+
+      //const update2: any = {...company, ...req.body}
+
       const companies = await updateCompany(parseInt(req.params.id), update);
       res.status(200).json(companies);
     }

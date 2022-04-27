@@ -12,7 +12,7 @@ interface Company {
   employees: string[];
 }
 
-const dataPath = path.join(__dirname, "./database.json");
+const dataPath = path.join(__dirname, "database.json");
 
 export const writeFile = (data: any) => {
   writeFileSync(dataPath, JSON.stringify(data));
